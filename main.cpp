@@ -5,7 +5,7 @@ int main()
     // Initialization
     //--------------------------------------------------------------------------------------
     int screenWidth = 800;
-    int screenHeight = 600;
+    int screenHeight = 500;
 
     InitWindow(screenWidth, screenHeight, "Empty Window with Raylib");
 
