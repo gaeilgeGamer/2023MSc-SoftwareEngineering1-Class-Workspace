@@ -1,36 +1,42 @@
-#include <raylib.h>
+#include "raylib.h"
 
-int main() {
+int main()
+{
     // Initialization
-    const int screenWidth = 800;
-    const int screenHeight = 600;
+    //--------------------------------------------------------------------------------------
+    int screenWidth = 800;
+    int screenHeight = 600;
 
-    InitWindow(screenWidth, screenHeight, "Raylib C++ Main Loop Example");
+    InitWindow(screenWidth, screenHeight, "Empty Window with Raylib");
 
-    Vector2 ballPosition = {(float)screenWidth/2, (float)screenHeight/2};
-    float ballRadius = 50.0f;
-    Color ballColor = RAYWHITE;
-
-    SetTargetFPS(60);   // Set desired FPS
+    SetTargetFPS(60);               // Set the desired frames-per-second target
 
     // Main game loop
-    while (!WindowShouldClose()) {    // Detect window close button or ESC key
+    while (!WindowShouldClose())    // Detect window close button or ESC key
+    {
         // Update
-        // For this simple example, there's no update logic
+        //----------------------------------------------------------------------------------
+
+        // TODO: Update your variables here
+
+        //----------------------------------------------------------------------------------
 
         // Draw
+        //----------------------------------------------------------------------------------
         BeginDrawing();
 
-        ClearBackground(DARKGRAY);
+        ClearBackground(RAYWHITE);  // Clear the screen with a white color
 
-        DrawText("Welcome to Raylib with C++!", 10, 10, 20, RAYWHITE);
-        DrawCircleV(ballPosition, ballRadius, ballColor);
+        // TODO: Draw everything you want here
 
         EndDrawing();
+        //----------------------------------------------------------------------------------
     }
 
-    // De-initialization
-    CloseWindow();     // Close window and OpenGL context
+    // De-Initialization
+    //--------------------------------------------------------------------------------------
+    CloseWindow();        // Close the window and OpenGL context
+    //--------------------------------------------------------------------------------------
 
     return 0;
 }
