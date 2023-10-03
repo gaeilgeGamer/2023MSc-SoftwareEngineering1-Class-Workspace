@@ -5,17 +5,24 @@ int main()
     // Initialization
     //--------------------------------------------------------------------------------------
 
-    InitWindow(800, 600, "Variable Initialization Methods");
+    InitWindow(800, 600, "Operators");
 
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
 
-    float Speed; 
-    Speed = 1.99f; 
-    double Score = 5.9999; 
- 
-    float initializedSpeed{2.99f};
-    double initializedScore{};
+    int a = 5; 
+    int b = 3; 
+
+    int sum = a+b; 
+    int difference = a -b;
+    int product = a*b; 
+    float quotient = (float)a/b;
+    int remainder = a% b;
+
+    bool isEqual = a ==b;
+    bool isNotEqual = a!=b;
+
+    bool logicalResult = (a>b)&& (a!=b); 
 
 
     SetTargetFPS(60);               // Set the desired frames-per-second target
@@ -34,11 +41,10 @@ int main()
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
+        DrawText("Operators with Raylib!", 10,10,20,LIGHTGRAY);
+        DrawText(TextFormat("Sum: %d+%d+%d", a, b, sum), 10,40,20, BLACK);
         ClearBackground(RAYWHITE);  // Clear the screen with a white color
         // TODO: Draw everything you want here
-
-        DrawText(TextFormat("Screen Width: %d", screenWidth), 10, 10,30,BLACK);
-        DrawText(TextFormat("Screen Height: %d", screenHeight), 10, 40,30,BLACK);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
