@@ -7,18 +7,14 @@ int main()
     const int screenWidth = 800;
     const int screenHeight = 600;
 
-    InitWindow(screenWidth, screenHeight, "Input Movement Example");
+    InitWindow(screenWidth, screenHeight, "Raylib Follow Mouse and Change Colour");
+    
 
     Texture2D myTexture = LoadTexture("Resources/Textures/mario.png");
 
     Vector2 scale = {0.5f,0.5f};
-
-    float rotation = 0.0f;
+   
     Color tint = WHITE;
-
-    Vector2 position = {(screenWidth -(myTexture.width *scale.x))/2, (screenHeight-(myTexture.height*scale.y))/2};
-
-    const float moveSpeed = 5.0f;
 
     SetTargetFPS(60);               // Set the desired frames-per-second target
 
@@ -27,13 +23,21 @@ int main()
     {
         // Update
         //----------------------------------------------------------------------------------
-        if(IsKeyDown(KEY_RIGHT)) position.x += moveSpeed;
-        if(IsKeyDown(KEY_LEFT)) position.x -= moveSpeed;
-        if(IsKeyDown(KEY_UP)) position.y -= moveSpeed;
-        if(IsKeyDown(KEY_DOWN)) position.y += moveSpeed;
+        Vector2 position = GetMousePosition();
+        position.x -= myTexture.width * scale.x/2;
+        position.y -= myTexture.height * scale.y/2;
+
         // TODO: Update your variables here
-        if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) rotation -= 10.0f;
-        if(IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)) rotation += 10.0f;
+        if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+            tint = (Color){ 
+            (unsigned char)GetRandomValue(50,255),
+            (unsigned char)GetRandomValue(50,255),
+            (unsigned char)GetRandomValue(50,255), 255
+            };
+        }
+        if(IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)){
+            tint = WHITE;
+        }
         //----------------------------------------------------------------------------------
 
         // Draw
@@ -43,7 +47,7 @@ int main()
         ClearBackground(RAYWHITE);
           // Clear the screen with a white color
         // TODO: Draw everything you want here
-        DrawTextureEx(myTexture, position, rotation, 0.5f, tint);
+        DrawTextureEx(myTexture, position, 0, 0.5f, tint);
 
 
         EndDrawing();
