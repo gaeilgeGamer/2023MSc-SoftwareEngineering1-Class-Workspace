@@ -7,7 +7,11 @@ int main()
     const int screenWidth = 800;
     const int screenHeight = 600;
 
-    InitWindow(screenWidth, screenHeight, "Basic Drawing Screen");
+    InitWindow(screenWidth, screenHeight, "Ball Example");
+
+    Vector2 ballPosition = {(float)screenWidth/2, (float)screenHeight/2};
+    float ballRadius = 50.0f;
+    Color ballColor = RAYWHITE;
 
     SetTargetFPS(60);               // Set the desired frames-per-second target
 
@@ -25,15 +29,11 @@ int main()
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);  // Clear the screen with a white color
+        ClearBackground(BLACK);  // Clear the screen with a white color
         // TODO: Draw everything you want here
 
-        DrawRectangle(50,50,200,100,RED);
-        DrawCircle(400,300,50,BLUE);
-        DrawLine(10,10,790,590,GREEN);
-
-        Color myColor = {128,64,32,255};
-        DrawRectangle(50,50,200,100,myColor);
+        DrawText("Welcome to Raylib Ball Example", 10, 10, 20, RAYWHITE);
+        DrawCircleV(ballPosition, ballRadius, ballColor);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
