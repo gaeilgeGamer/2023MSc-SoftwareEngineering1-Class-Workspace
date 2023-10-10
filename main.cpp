@@ -7,11 +7,16 @@ int main()
     const int screenWidth = 800;
     const int screenHeight = 600;
 
-    InitWindow(screenWidth, screenHeight, "Ball Example");
+    InitWindow(screenWidth, screenHeight, "Raylib Texture Loading Example");
 
-    Vector2 ballPosition = {(float)screenWidth/2, (float)screenHeight/2};
-    float ballRadius = 50.0f;
-    Color ballColor = RAYWHITE;
+    Texture2D marioTexture = LoadTexture("Resources/Textures/mario.png");
+
+    Vector2 scale = {0.5f/0.5f};
+
+    float rotation = 0.0f;
+    Color tint = WHITE;
+
+    Vector2 position = {(screenWidth - (marioTexture.width* scale.x))/2, (screenHeight- (marioTexture.height * scale.y))/2};
 
     SetTargetFPS(60);               // Set the desired frames-per-second target
 
@@ -32,8 +37,8 @@ int main()
         ClearBackground(BLACK);  // Clear the screen with a white color
         // TODO: Draw everything you want here
 
-        DrawText("Welcome to Raylib Ball Example", 10, 10, 20, RAYWHITE);
-        DrawCircleV(ballPosition, ballRadius, ballColor);
+        DrawTextureEx(marioTexture, position, rotation, 0.5f, tint);
+
 
         EndDrawing();
         //----------------------------------------------------------------------------------
