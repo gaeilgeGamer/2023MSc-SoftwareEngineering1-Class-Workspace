@@ -7,16 +7,14 @@ int main()
     const int screenWidth = 800;
     const int screenHeight = 600;
 
-    InitWindow(screenWidth, screenHeight, "Raylib Texture Loading Example");
+    InitWindow(screenWidth, screenHeight, "Conditionals");
 
-    Texture2D marioTexture = LoadTexture("Resources/Textures/mario.png");
+    bool isEven = false; 
+    int number = 5; 
 
-    Vector2 scale = {0.5f/0.5f};
-
-    float rotation = 0.0f;
-    Color tint = WHITE;
-
-    Vector2 position = {(screenWidth - (marioTexture.width* scale.x))/2, (screenHeight- (marioTexture.height * scale.y))/2};
+    if(number % 2 == 0){
+        isEven = true;
+    }
 
     SetTargetFPS(60);               // Set the desired frames-per-second target
 
@@ -34,10 +32,15 @@ int main()
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-        ClearBackground(BLACK);  // Clear the screen with a white color
+        ClearBackground(RAYWHITE);
+        if(isEven){
+            DrawText("Number is even.", 10,10,20, LIGHTGRAY);
+        }else{
+            DrawText("Number is odd.", 10,10,20,LIGHTGRAY);
+        } 
+          // Clear the screen with a white color
         // TODO: Draw everything you want here
 
-        DrawTextureEx(marioTexture, position, rotation, 0.5f, tint);
 
 
         EndDrawing();
