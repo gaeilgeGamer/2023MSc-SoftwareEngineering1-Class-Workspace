@@ -7,14 +7,18 @@ int main()
     const int screenWidth = 800;
     const int screenHeight = 600;
 
-    InitWindow(screenWidth, screenHeight, "Conditionals");
+    InitWindow(screenWidth, screenHeight, "Input Movement Example");
 
-    bool isEven = false; 
-    int number = 5; 
+    Texture2D myTexture = LoadTexture("Resources/Textures/mario.png");
 
-    if(number % 2 == 0){
-        isEven = true;
-    }
+    Vector2 scale = {0.5f,0.5f};
+
+    float rotation = 0.0f;
+    Color tint = WHITE;
+
+    Vector2 position = {(screenWidth -(myTexture.width *scale.x))/2, (screenHeight-(myTexture.height*scale.y))/2};
+
+    const float moveSpeed = 5.0f;
 
     SetTargetFPS(60);               // Set the desired frames-per-second target
 
@@ -23,9 +27,13 @@ int main()
     {
         // Update
         //----------------------------------------------------------------------------------
-
+        if(IsKeyDown(KEY_RIGHT)) position.x += moveSpeed;
+        if(IsKeyDown(KEY_LEFT)) position.x -= moveSpeed;
+        if(IsKeyDown(KEY_UP)) position.y -= moveSpeed;
+        if(IsKeyDown(KEY_DOWN)) position.y += moveSpeed;
         // TODO: Update your variables here
-
+        if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) rotation -= 10.0f;
+        if(IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)) rotation += 10.0f;
         //----------------------------------------------------------------------------------
 
         // Draw
@@ -33,20 +41,15 @@ int main()
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
-        if(isEven){
-            DrawText("Number is even.", 10,10,20, LIGHTGRAY);
-        }else{
-            DrawText("Number is odd.", 10,10,20,LIGHTGRAY);
-        } 
           // Clear the screen with a white color
         // TODO: Draw everything you want here
-
+        DrawTextureEx(myTexture, position, rotation, 0.5f, tint);
 
 
         EndDrawing();
         //----------------------------------------------------------------------------------
     }
-
+    UnloadTexture(myTexture);
     // De-Initialization
     //--------------------------------------------------------------------------------------
     CloseWindow();        // Close the window and OpenGL context
