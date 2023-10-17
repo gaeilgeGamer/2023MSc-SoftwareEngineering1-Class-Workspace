@@ -1,36 +1,45 @@
 #include "raylib.h"
 
-const int screenWidth = 800;
-const int screenHeight = 600;
-Vector2 circlePosition = {screenWidth/2, screenHeight/2};
-const float moveSpeed = 5.0f;
-const int circleRadius = 50;
-
-Vector2 MoveCircle(Vector2 position)
-{
-    if(IsKeyDown(KEY_RIGHT)) position.x += moveSpeed; 
-    if(IsKeyDown(KEY_LEFT)) position.x -= moveSpeed;
-    if(IsKeyDown(KEY_UP)) position.y -= moveSpeed;
-    if(IsKeyDown(KEY_DOWN)) position.y += moveSpeed;
-    return position; 
-}
+struct Player{
+    Vector2 position; 
+    float speed; 
+    Texture2D texture; 
+    Rectangle sourceRec; 
+};
 
 int main()
 {
-    InitWindow(screenWidth, screenHeight, "Function Example");
+    const int screenWidth = 800;
+    const int screenHeight = 600;
+    
+    InitWindow(screenWidth, screenHeight, "Player Struct Example");
+    
+    struct Player player; 
+    player.position = (Vector2){screenWidth/2, screenHeight/2};
+    player.speed = 5.0f;
+    player.texture = LoadTexture("Resources/Textures/scarfy.png");
+
+    player.sourceRec = (Rectangle){0.0f, 0.0f, (float)(player.texture.width)/6, (float)(player.texture.height)};
+
+
     SetTargetFPS(60);
     
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        circlePosition = MoveCircle(circlePosition);
+        if(IsKeyDown(KEY_RIGHT)) player.position.x += player.speed;
+        if(IsKeyDown(KEY_LEFT)) player.position.x -= player.speed;
+        if(IsKeyDown(KEY_UP)) player.position.y -= player.speed;
+        if(IsKeyDown(KEY_DOWN)) player.position.y += player.speed;
+        
 
             BeginDrawing();
             ClearBackground(RAYWHITE);
-            DrawCircleV(circlePosition, circleRadius, RED);
+            DrawTextureRec(player.texture, player.sourceRec, player.position, WHITE);
             EndDrawing();        
                 
     }
+    UnloadTexture(player.texture);
     CloseWindow();       
     return 0;       
             
