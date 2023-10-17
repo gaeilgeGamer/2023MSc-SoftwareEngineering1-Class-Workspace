@@ -7,6 +7,16 @@ struct Player{
     Rectangle sourceRec; 
 };
 
+struct Player HandlePlayerInput(struct Player player)
+{
+        if(IsKeyDown(KEY_RIGHT)) player.position.x += player.speed;
+        if(IsKeyDown(KEY_LEFT)) player.position.x -= player.speed;
+        if(IsKeyDown(KEY_UP)) player.position.y -= player.speed;
+        if(IsKeyDown(KEY_DOWN)) player.position.y += player.speed;
+        
+        return player; 
+}
+
 int main()
 {
     const int screenWidth = 800;
@@ -27,11 +37,7 @@ int main()
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        if(IsKeyDown(KEY_RIGHT)) player.position.x += player.speed;
-        if(IsKeyDown(KEY_LEFT)) player.position.x -= player.speed;
-        if(IsKeyDown(KEY_UP)) player.position.y -= player.speed;
-        if(IsKeyDown(KEY_DOWN)) player.position.y += player.speed;
-        
+        player = HandlePlayerInput(player);
 
             BeginDrawing();
             ClearBackground(RAYWHITE);
