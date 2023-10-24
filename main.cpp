@@ -1,17 +1,27 @@
 #include "raylib.h"
 
+#define NUM_RECTANGLES 10
+
 int main()
 {
     const int screenWidth = 800;
     const int screenHeight = 600;
     
-    InitWindow(screenWidth, screenHeight, "Basic Array");
+    InitWindow(screenWidth, screenHeight, "Iterating through an array of Rectangles");
     
-    Vector2 circlePositions[3];
+    Rectangle rectangles[NUM_RECTANGLES];
+    Color rectangleColors[NUM_RECTANGLES];
 
-    circlePositions[0] = (Vector2){200,300};
-    circlePositions[1] = (Vector2){400,300};
-    circlePositions[2] = (Vector2){600,300};
+    for(int i = 0; i< NUM_RECTANGLES; i++)
+    {
+        rectangles[i].x = GetRandomValue(0, screenWidth-100);
+        rectangles[i].y = GetRandomValue(0, screenHeight-100);
+        rectangles[i].width = GetRandomValue(50,150);
+        rectangles[i].height = GetRandomValue(50,150);
+
+        rectangleColors[i] = (Color){GetRandomValue(50,150),GetRandomValue(50,150),GetRandomValue(50,150)};
+
+    }
 
     SetTargetFPS(60);
     
@@ -22,9 +32,10 @@ int main()
             BeginDrawing();
             ClearBackground(RAYWHITE);
 
-            DrawCircleV(circlePositions[0], 50, RED);
-            DrawCircleV(circlePositions[1], 50, BLUE);
-            DrawCircleV(circlePositions[2], 50, GREEN);
+            for(int i = 0; i<NUM_RECTANGLES; i++)
+            {
+            DrawRectangleRec(rectangles[i], rectangleColors[i]);
+            }
             
             EndDrawing();        
                 
