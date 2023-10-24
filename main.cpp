@@ -5,7 +5,6 @@ struct Player{
     float speed; 
     Texture2D texture; 
     Rectangle sourceRec; 
-    float time;
 };
 
 struct Player HandlePlayerInput(struct Player player)
