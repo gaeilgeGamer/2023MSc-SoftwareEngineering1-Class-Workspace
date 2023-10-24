@@ -1,51 +1,34 @@
 #include "raylib.h"
 
-struct Player{
-    Vector2 position; 
-    float speed; 
-    Texture2D texture; 
-    Rectangle sourceRec; 
-};
-
-struct Player HandlePlayerInput(struct Player player)
-{
-        if(IsKeyDown(KEY_RIGHT)) player.position.x += player.speed;
-        if(IsKeyDown(KEY_LEFT)) player.position.x -= player.speed;
-        if(IsKeyDown(KEY_UP)) player.position.y -= player.speed;
-        if(IsKeyDown(KEY_DOWN)) player.position.y += player.speed;
-        
-        return player; 
-}
-
 int main()
 {
     const int screenWidth = 800;
     const int screenHeight = 600;
     
-    InitWindow(screenWidth, screenHeight, "Player Struct Example");
+    InitWindow(screenWidth, screenHeight, "Basic Array");
     
-    struct Player player; 
-    player.position = (Vector2){screenWidth/2, screenHeight/2};
-    player.speed = 5.0f;
-    player.texture = LoadTexture("Resources/Textures/scarfy.png");
+    Vector2 circlePositions[3];
 
-    player.sourceRec = (Rectangle){0.0f, 0.0f, (float)(player.texture.width)/6, (float)(player.texture.height)};
-
+    circlePositions[0] = (Vector2){200,300};
+    circlePositions[1] = (Vector2){400,300};
+    circlePositions[2] = (Vector2){600,300};
 
     SetTargetFPS(60);
     
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        player = HandlePlayerInput(player);
-
+        
             BeginDrawing();
             ClearBackground(RAYWHITE);
-            DrawTextureRec(player.texture, player.sourceRec, player.position, WHITE);
+
+            DrawCircleV(circlePositions[0], 50, RED);
+            DrawCircleV(circlePositions[1], 50, BLUE);
+            DrawCircleV(circlePositions[2], 50, GREEN);
+            
             EndDrawing();        
                 
     }
-    UnloadTexture(player.texture);
     CloseWindow();       
     return 0;       
             
