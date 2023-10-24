@@ -1,39 +1,12 @@
 #include "raylib.h"
-
-class Ball{
-    public:
-    Vector2 position; 
-    float radius; 
-    Color color;
-
-    Ball(Vector2 pos, float r, Color c) : position(pos), radius(r), color(c){}
-
-    void Draw(){
-        DrawCircleV(position,radius, color);
-    }
-
-    void Move(Vector2 offset)
-    {
-        position.x += offset.x;
-        position.y += offset.y;
-    }
-
-    Vector2 GetPosition() const{
-        return position;
-    }
-
-    void SetPosition(Vector2 pos){
-        position = pos; 
-    }
-};
-
+#include "Ball.h"
 
 int main()
 {
     const int screenWidth = 800;
     const int screenHeight = 600;
     
-    InitWindow(screenWidth, screenHeight, "Class Example with a ball");
+    InitWindow(screenWidth, screenHeight, "Source and Header file with Class and Objects");
     
     Ball myBall({screenWidth/2, screenHeight/2}, 50, BLUE);
   
