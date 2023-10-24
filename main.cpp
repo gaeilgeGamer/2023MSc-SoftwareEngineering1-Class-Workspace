@@ -19,7 +19,7 @@ int main()
         rectangles[i].width = GetRandomValue(50,150);
         rectangles[i].height = GetRandomValue(50,150);
 
-        rectangleColors[i] = (Color){GetRandomValue(50,150),GetRandomValue(50,150),GetRandomValue(50,150)};
+        rectangleColors[i] = (Color){GetRandomValue(50,255),GetRandomValue(50,255),GetRandomValue(50,255),255};
 
     }
 
