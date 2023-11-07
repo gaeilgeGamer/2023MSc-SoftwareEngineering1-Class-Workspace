@@ -1,20 +1,49 @@
 #include "raylib.h"
-#include "Ball.h"
+
+class Shape{
+    public:
+    int x,y;
+    Color color;
+
+    Shape(int x, int y, Color color): x(x), y(y), color(color){}
+};
+
+class RectangleShape: public Shape{
+public:
+int width,height; 
+
+RectangleShape(int x, int y, int width, int height, Color color)
+: Shape(x,y, color), width(width), height(height){}
+
+void Render(){
+    DrawRectangle(x,y, width, height, color);
+}
+
+};
+
+class CircleShape : public Shape{
+    public:
+    int radius;
+
+    CircleShape(int x, int y, int radius, Color color)
+    :Shape(x,y,color), radius(radius){}
+
+void Render(){
+    DrawCircle(x,y,radius,color);
+}
+};
+
 
 int main()
 {
     const int screenWidth = 800;
     const int screenHeight = 600;
     
-    InitWindow(screenWidth, screenHeight, "Array with Classes");
-    
-    Ball balls[5] = {
-        {{100,100}, 50, RED},
-        {{200,200}, 60, BLUE},
-        {{300,300}, 70, GREEN},
-        {{400,400}, 80, YELLOW},
-        {{500,500}, 90, PINK},
-    };
+    InitWindow(screenWidth, screenHeight, "Raylib with Inheritance");
+
+    RectangleShape rect(100,100,200,150, RED);
+
+    CircleShape circle(500,300,100,BLUE);
   
     SetTargetFPS(60);
     
@@ -24,11 +53,10 @@ int main()
         
             BeginDrawing();
             ClearBackground(RAYWHITE);
-        
-            for (int i = 0; i<5; i++)
-            {
-                balls[i].Draw();
-            }
+
+            rect.Render();
+            circle.Render();
+
             EndDrawing();        
                 
     }
